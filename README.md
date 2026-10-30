@@ -91,7 +91,7 @@ To deploy a GHCR image to a cluster, update `kubernetes/deployment.yaml` with th
 
 ## Monitoring
 
-Prometheus scrapes the Flask `/metrics` endpoint. With Docker Compose, open http://localhost:9090. Grafana is intentionally not included as a default service to keep the first run lightweight; add it using the official Grafana Docker image and connect it to Prometheus at `http://prometheus:9090` on the Compose network, or run Grafana separately.
+Prometheus scrapes the Flask `/metrics` endpoint. With Docker Compose, open http://localhost:9090. Grafana is included in Docker Compose with a provisioned Prometheus datasource and a starter dashboard. Open http://localhost:3000/ and sign in with the local demo credentials shown above. Change the demo password before exposing Grafana beyond your machine.
 
 Example PromQL:
 - `http_requests_total`
