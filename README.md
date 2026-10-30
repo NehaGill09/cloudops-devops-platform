@@ -6,19 +6,25 @@ A portfolio project demonstrating a small Python service packaged with Docker, d
 
 ## Architecture
 
-```text
-Developer -> GitHub -> GitHub Actions (pytest + Docker build)
-                         |
-                         +---- optional GHCR image publish
-                                      |
-Local machine: Docker Compose OR Minikube
-       |                                  |
- Flask API + /healthz + /metrics      Kubernetes Deployment + Service
-       |                                  |
- Prometheus scrapes metrics <-------------+
-       |
- Grafana dashboards
-```
+![CloudOps platform architecture](docs/images/architecture.svg)
+
+The platform can run locally with Docker Compose or on a local Minikube cluster. Prometheus collects API metrics and Grafana displays the provisioned dashboard.
+
+## Visual walkthrough
+
+### CI and container publishing
+
+![GitHub Actions CI and GHCR publishing pipeline](docs/images/cicd-pipeline.svg)
+
+### Kubernetes deployment
+
+![Kubernetes Deployment with two API replicas](docs/images/kubernetes-deployment.svg)
+
+### Monitoring overview
+
+![Illustrative Grafana monitoring dashboard layout](docs/images/monitoring-overview.svg)
+
+> The monitoring graphic is a conceptual preview of the dashboard panels configured in this repository. Its chart lines are illustrative, not live telemetry.
 
 ## Repository layout
 
