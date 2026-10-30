@@ -1,11 +1,12 @@
 import os
 from flask import Flask, jsonify
 from prometheus_flask_exporter import PrometheusMetrics
+from prometheus_client import CollectorRegistry
 
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "local-demo-only-change-me")
-    metrics = PrometheusMetrics(app, path="/metrics")
+    metrics = PrometheusMetrics(app, path="/metrics", registry=CollectorRegistry())
     metrics.info("app_info", "CloudOps demo API", version="1.0.0")
 
     @app.get("/")
